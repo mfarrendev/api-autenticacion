@@ -1,0 +1,25 @@
+{
+  "name": "api-autenticacion",
+  "version": "0.1.0",
+  "description": "API REST de referencia con autenticación segura: sesiones opacas, scrypt versionado, bloqueo progresivo, CSRF, BOLA y auditoría.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node dist/servidor.js",
+    "dev": "node --experimental-strip-types src/servidor.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
