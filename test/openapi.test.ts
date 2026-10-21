@@ -1,6 +1,10 @@
 // La especificación OpenAPI se valida contra las rutas reales: cada ruta del
 // servidor está documentada, cada operación documentada existe, y cada
 // operación llamada de verdad responde un código que la especificación declara.
+//
+// Medición (2026-10-20): se borró /admin/auditoria de la especificación y
+// cayeron 2 de 5 (rutas documentadas y esquema de seguridad), con las 5
+// corridas según el reportero JSON. Revertido.
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { crearApp } from "../src/app.ts";
 import { especificacion } from "../src/openapi.ts";

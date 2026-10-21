@@ -1,5 +1,20 @@
 // Pruebas de punta a punta contra el servidor real en un puerto efímero.
 // Cada bloque cubre una propiedad del modelo de amenazas del README.
+//
+// Medición (2026-10-20): se puso cada defecto a mano, se corrió este archivo
+// con el reportero JSON exigiendo que corrieran las 36 pruebas, y se revirtió.
+//   1. login sin hash señuelo para el correo inexistente: cae 1 de 36
+//      (el tiempo de respuesta).
+//   2. login sin cerrar la sesión que traía el navegador: cae 1 de 36
+//      (fijación de sesión).
+//   3. verNota sin comparar el dueño: cae 1 de 36 (BOLA).
+//   4. consumirToken sin "AND usado = 0": caen 2 de 36 (token reutilizado y
+//      usos simultáneos).
+//   5. origenPermitido devuelve true cuando hay Origin (y, por cómo quedó la
+//      mutación, también sin él): caen 4 de 36 (los tres de CSRF y el de
+//      auditoría, que esperaba el evento csrf-rechazado).
+//   6. bloqueo por cuenta solo si la cuenta existe: caen 2 de 36 (bloqueo de
+//      una cuenta inexistente y bloqueo creciente).
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { hashear } from "../src/contrasenas.ts";
 import { hashSecreto } from "../src/secretos.ts";
